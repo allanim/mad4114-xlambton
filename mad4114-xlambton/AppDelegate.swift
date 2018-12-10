@@ -17,6 +17,116 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Launch screen, Reference from https://github.com/ameli90/launch-screen-animation
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        self.window!.backgroundColor = UIColor(red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+        self.window!.makeKeyAndVisible()
+        
+        // rootViewController from StoryBoard
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = mainStoryboard.instantiateViewController(withIdentifier: "first")
+        self.window!.rootViewController = navigationController
+        
+        // logo mask
+        navigationController.view.layer.mask = CALayer()
+        navigationController.view.layer.mask?.contents = UIImage(named: "star.png")!.cgImage
+        navigationController.view.layer.mask?.bounds = CGRect(x: 0, y: 0, width: 70, height: 70)
+        navigationController.view.layer.mask?.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        navigationController.view.layer.mask?.position = CGPoint(x: navigationController.view.frame.width / 2, y: navigationController.view.frame.height / 2)
+        
+        // logo mask background view
+        let maskBgView = UIView(frame: navigationController.view.frame)
+        maskBgView.backgroundColor = UIColor.white
+        navigationController.view.addSubview(maskBgView)
+        navigationController.view.bringSubviewToFront(maskBgView)
+        
+        // logo mask animation
+        let transformAnimation = CAKeyframeAnimation(keyPath: "bounds")
+        transformAnimation.delegate = self as? CAAnimationDelegate
+        transformAnimation.duration = 1
+        transformAnimation.beginTime = CACurrentMediaTime() + 3 //add delay of 3 second
+        let initalBounds = NSValue(cgRect: (navigationController.view.layer.mask?.bounds)!)
+        let secondBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let finalBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 2000, height: 2000))
+        transformAnimation.values = [initalBounds, secondBounds, finalBounds]
+        transformAnimation.keyTimes = [0, 0.5, 1]
+        transformAnimation.timingFunctions = [CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut), CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)]
+        transformAnimation.isRemovedOnCompletion = false
+        transformAnimation.fillMode = CAMediaTimingFillMode.forwards
+        navigationController.view.layer.mask?.add(transformAnimation, forKey: "maskAnimation")
+        
+        // logo mask background view animation
+        UIView.animate(withDuration: 0.1,
+                       delay: 1.35,
+                       options: UIView.AnimationOptions.curveEaseIn,
+                       animations: { maskBgView.alpha = 0.0 },
+                       completion: { finished in maskBgView.removeFromSuperview()
+        })
+        
+        // root view animation
+        UIView.animate(withDuration: 0.25,
+                       delay: 1.3,
+                       options: [],
+                       animations: {
+                        self.window!.rootViewController!.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        },
+                       completion: { finished in
+                        UIView.animate(withDuration: 0.3,
+                                       delay: 0.0,
+                                       options: UIView.AnimationOptions.curveEaseInOut,
+                                       animations: { self.window!.rootViewController!.view.transform = .identity },
+                                       completion: nil)
+        })
+        
+        
+        // init cipher
+        StoreUtils.initCipherAlgorithm()
+        StoreUtils.initMissions()
+        
+        // core data
+        let context = persistentContainer.viewContext
+        
+        // drop agent entity
+//        let dropAgents: [AgentEntity] = try! context.fetch(AgentEntity.fetchRequest())
+//        if dropAgents.count > 0 {
+//            for dropAgent in dropAgents {
+//                context.delete(dropAgent)
+//            }
+//        }
+        
+        // add temp agent entity
+        let agents = try! context.count(for: AgentEntity.fetchRequest())
+        if agents == 0 {
+            StoreUtils.makeAgentEntity(context, name: "Allan", country: "kr", mission: .I)
+            StoreUtils.makeAgentEntity(context, name: "Jay", country: "ja", mission: .P)
+            StoreUtils.makeAgentEntity(context, name: "Ken", country: "ca", mission: .R)
+            StoreUtils.makeAgentEntity(context, name: "Chen", country: "zh", mission: .I)
+            StoreUtils.makeAgentEntity(context, name: "Marcos", country: "br", mission: .P)
+            StoreUtils.makeAgentEntity(context, name: "Alex", country: "us", mission: .R)
+            saveContext()
+        }
+        
+        // drop country entity
+//        let dropCountries: [CountryEntity] = try! context.fetch(CountryEntity.fetchRequest())
+//        if dropCountries.count > 0 {
+//            for dropCountry in dropCountries {
+//                context.delete(dropCountry)
+//            }
+//        }
+        
+        // add country entity
+        let countries = try! context.count(for: CountryEntity.fetchRequest())
+        if countries == 0 {
+            StoreUtils.makeCountryEntity(context, code: "kr", name: "Korea", latitude: 37.5652894, longitude: 126.8494676)
+            StoreUtils.makeCountryEntity(context, code: "ja", name: "Japan", latitude: 35.6735408, longitude: 139.5703055)
+            StoreUtils.makeCountryEntity(context, code: "ca", name: "Canada", latitude: 43.6570321, longitude: -79.6010258)
+            StoreUtils.makeCountryEntity(context, code: "zh", name: "China", latitude: 39.9390731, longitude: 116.1172817)
+            StoreUtils.makeCountryEntity(context, code: "br", name: "Brazil", latitude: -22.4736177, longitude: -53.1278237)
+            StoreUtils.makeCountryEntity(context, code: "us", name: "USA", latitude: 38.8935559, longitude: -77.0846815)
+            saveContext()
+        }
+        
         return true
     }
 

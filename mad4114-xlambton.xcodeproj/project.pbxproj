@@ -13,6 +13,14 @@
 		9D791E1821BD82C8008270D9 /* mad4114_xlambton.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D791E1621BD82C8008270D9 /* mad4114_xlambton.xcdatamodeld */; };
 		9D791E1A21BD82C9008270D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D791E1921BD82C9008270D9 /* Assets.xcassets */; };
 		9D791E1D21BD82C9008270D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D791E1B21BD82C9008270D9 /* LaunchScreen.storyboard */; };
+		9D791E2521BD8538008270D9 /* StoreUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D791E2421BD8538008270D9 /* StoreUtils.swift */; };
+		9DD9C22121BDE44D00D727B5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DD9C22021BDE44D00D727B5 /* star.png */; };
+		9DD9C22321BDEA8900D727B5 /* AgentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22221BDEA8900D727B5 /* AgentTableViewController.swift */; };
+		9DD9C22B21BE0E0300D727B5 /* RoundedBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22721BE0E0300D727B5 /* RoundedBorderButton.swift */; };
+		9DD9C22C21BE0E0300D727B5 /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22821BE0E0300D727B5 /* TextFieldEffects.swift */; };
+		9DD9C22D21BE0E0300D727B5 /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22921BE0E0300D727B5 /* YoshikoTextField.swift */; };
+		9DD9C22E21BE0E0300D727B5 /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22A21BE0E0300D727B5 /* HoshiTextField.swift */; };
+		9DD9C23021BE10FC00D727B5 /* AgentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22F21BE10FC00D727B5 /* AgentDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		9D791E1921BD82C9008270D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D791E1C21BD82C9008270D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D791E1E21BD82C9008270D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D791E2421BD8538008270D9 /* StoreUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreUtils.swift; sourceTree = "<group>"; };
+		9DD9C22021BDE44D00D727B5 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		9DD9C22221BDEA8900D727B5 /* AgentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentTableViewController.swift; sourceTree = "<group>"; };
+		9DD9C22721BE0E0300D727B5 /* RoundedBorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedBorderButton.swift; sourceTree = "<group>"; };
+		9DD9C22821BE0E0300D727B5 /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		9DD9C22921BE0E0300D727B5 /* YoshikoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshikoTextField.swift; sourceTree = "<group>"; };
+		9DD9C22A21BE0E0300D727B5 /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
+		9DD9C22F21BE10FC00D727B5 /* AgentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,8 @@
 		9D791E0E21BD82C8008270D9 /* mad4114-xlambton */ = {
 			isa = PBXGroup;
 			children = (
+				9DD9C22621BE0DE700D727B5 /* ui */,
+				9DD9C21F21BDE41C00D727B5 /* images */,
 				9D791E0F21BD82C8008270D9 /* AppDelegate.swift */,
 				9D791E1121BD82C8008270D9 /* ViewController.swift */,
 				9D791E1321BD82C8008270D9 /* Main.storyboard */,
@@ -63,8 +81,30 @@
 				9D791E1B21BD82C9008270D9 /* LaunchScreen.storyboard */,
 				9D791E1E21BD82C9008270D9 /* Info.plist */,
 				9D791E1621BD82C8008270D9 /* mad4114_xlambton.xcdatamodeld */,
+				9D791E2421BD8538008270D9 /* StoreUtils.swift */,
+				9DD9C22221BDEA8900D727B5 /* AgentTableViewController.swift */,
+				9DD9C22F21BE10FC00D727B5 /* AgentDetailViewController.swift */,
 			);
 			path = "mad4114-xlambton";
+			sourceTree = "<group>";
+		};
+		9DD9C21F21BDE41C00D727B5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				9DD9C22021BDE44D00D727B5 /* star.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		9DD9C22621BE0DE700D727B5 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				9DD9C22A21BE0E0300D727B5 /* HoshiTextField.swift */,
+				9DD9C22721BE0E0300D727B5 /* RoundedBorderButton.swift */,
+				9DD9C22821BE0E0300D727B5 /* TextFieldEffects.swift */,
+				9DD9C22921BE0E0300D727B5 /* YoshikoTextField.swift */,
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D791E1D21BD82C9008270D9 /* LaunchScreen.storyboard in Resources */,
+				9DD9C22121BDE44D00D727B5 /* star.png in Resources */,
 				9D791E1A21BD82C9008270D9 /* Assets.xcassets in Resources */,
 				9D791E1521BD82C8008270D9 /* Main.storyboard in Resources */,
 			);
@@ -138,9 +179,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DD9C22E21BE0E0300D727B5 /* HoshiTextField.swift in Sources */,
+				9DD9C22D21BE0E0300D727B5 /* YoshikoTextField.swift in Sources */,
+				9DD9C22C21BE0E0300D727B5 /* TextFieldEffects.swift in Sources */,
 				9D791E1821BD82C8008270D9 /* mad4114_xlambton.xcdatamodeld in Sources */,
+				9D791E2521BD8538008270D9 /* StoreUtils.swift in Sources */,
+				9DD9C22321BDEA8900D727B5 /* AgentTableViewController.swift in Sources */,
+				9DD9C22B21BE0E0300D727B5 /* RoundedBorderButton.swift in Sources */,
 				9D791E1221BD82C8008270D9 /* ViewController.swift in Sources */,
 				9D791E1021BD82C8008270D9 /* AppDelegate.swift in Sources */,
+				9DD9C23021BE10FC00D727B5 /* AgentDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
