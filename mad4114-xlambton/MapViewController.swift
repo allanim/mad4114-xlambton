@@ -19,6 +19,10 @@ class MapViewController: UIViewController {
     @IBOutlet weak var rImageView: UIImageView!
     @IBOutlet weak var pImageView: UIImageView!
     
+    @IBOutlet weak var iActivity: UIActivityIndicatorView!
+    @IBOutlet weak var rActivity: UIActivityIndicatorView!
+    @IBOutlet weak var pActivity: UIActivityIndicatorView!
+    
     @IBOutlet weak var iSlider: UISlider!
     @IBOutlet weak var rSlider: UISlider!
     @IBOutlet weak var pSlider: UISlider!
@@ -28,7 +32,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var pLabel: UILabel!
     
     var mapManager = CLLocationManager()
-    var annotations : [MKPointAnnotation] = []
+    var annotation: [String:MKPointAnnotation] = [:]
     
     var context: NSManagedObjectContext {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -106,19 +110,29 @@ class MapViewController: UIViewController {
         
         // init images
         self.iSlider.minimumValue = 0.0
-        self.iSlider.maximumValue = Float(iDataArray.count)
+        self.iSlider.maximumValue = Float(iDataArray.count) - 0.1
         self.iSlider.value = 0.0
         self.iSlider.thumbTintColor = UIColor.blue
         
         self.rSlider.minimumValue = 0.0
-        self.rSlider.maximumValue = Float(rDataArray.count)
+        self.rSlider.maximumValue = Float(rDataArray.count) - 0.1
         self.rSlider.value = 0.0
         self.rSlider.thumbTintColor = UIColor.green
         
         self.pSlider.minimumValue = 0.0
-        self.pSlider.maximumValue = Float(pDataArray.count)
+        self.pSlider.maximumValue = Float(pDataArray.count) - 0.1
         self.pSlider.value = 0.0
         self.pSlider.thumbTintColor = UIColor.red
+        
+        // init activity
+        self.iActivity.stopAnimating()
+        self.iActivity.hidesWhenStopped = true
+        
+        self.rActivity.stopAnimating()
+        self.rActivity.hidesWhenStopped = true
+        
+        self.pActivity.stopAnimating()
+        self.pActivity.hidesWhenStopped = true
         
     }
     
@@ -152,17 +166,43 @@ class MapViewController: UIViewController {
     
     func makeMapPoint(agent: AgentEntity) {
         if let country = self.getCountry(code: agent.country!) {
+            // delete prev annotaion
+            if let annotation = self.annotation[agent.mission!] {
+                self.mapView.removeAnnotation(annotation)
+            }
+            
+            // make annotation
             let pointAnnotation = MKPointAnnotation()
             pointAnnotation.coordinate = CLLocationCoordinate2DMake(country.latitude, country.longitude)
             pointAnnotation.title = agent.mission
             mapView.addAnnotation(pointAnnotation)
-            annotations.append(pointAnnotation)
+            self.annotation[agent.mission!] = pointAnnotation
+            
+            // make region
+            let region = makeRegion(latitude: country.latitude, longitude: country.longitude)
+            mapView.setRegion(region, animated: true)
         }
         
     }
     
     func reloadImage(_ imageView: UIImageView, code: String) {
         if let url = StoreUtils.countryImage(code) {
+            let activity: UIActivityIndicatorView?
+            switch imageView {
+            case iImageView:
+                activity = self.iActivity
+            case rImageView:
+                activity =  self.rActivity
+            case pImageView:
+                activity =  self.rActivity
+            default:
+                activity = nil
+            }
+            
+            if let act = activity {
+                act.startAnimating()
+            }
+            
             // creating the background thread
             DispatchQueue.global(qos: DispatchQoS.userInitiated.qosClass).async {
                 // Image Download
@@ -177,7 +217,9 @@ class MapViewController: UIViewController {
                     }
                     
                     // stops the download indicator
-//                    self.activity.stopAnimating()
+                    if let act = activity {
+                        act.stopAnimating()
+                    }
                 }
             }
         }
@@ -212,19 +254,26 @@ class MapViewController: UIViewController {
 
 extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
     
+    func makeRegion(latitude: Double, longitude: Double) -> MKCoordinateRegion {
+        // Here we define the map's zoom. The value 0.01 is a pattern
+        let zoom: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 180, longitudeDelta: 180)
+        
+        // Store latitude and longitude received from smartphone
+        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        
+        // Based on myLocation and zoom define the region to be shown on the screen
+        return MKCoordinateRegion(center: myLocation, span: zoom)
+        
+        
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         // The array locations stores all the user's positions, and the position 0 is the most recent one
         let location = locations[0]
         
-        // Here we define the map's zoom. The value 0.01 is a pattern
-        let zoom: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 180, longitudeDelta: 180)
-        
-        // Store latitude and longitude received from smartphone
-        let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-        
-        // Based on myLocation and zoom define the region to be shown on the screen
-        let region: MKCoordinateRegion = MKCoordinateRegion(center: myLocation, span: zoom)
+        // Make Region
+        let region = makeRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
         // Setting the map itself based previous set-up
         mapView.setRegion(region, animated: true)

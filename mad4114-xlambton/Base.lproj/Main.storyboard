@@ -267,6 +267,18 @@
                                             <action selector="pSliderValueChanged:" destination="u7H-pd-6by" eventType="valueChanged" id="Jwq-c2-Etx"/>
                                         </connections>
                                     </slider>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9Hi-oz-pFv">
+                                        <rect key="frame" x="50" y="299" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DIv-AT-Pvs">
+                                        <rect key="frame" x="177" y="299" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Vgu-Y9-bSn">
+                                        <rect key="frame" x="305" y="299" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -281,13 +293,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="iActivity" destination="9Hi-oz-pFv" id="xa9-Dp-BAB"/>
                         <outlet property="iImageView" destination="hCO-ql-AFl" id="rc6-rJ-Kei"/>
                         <outlet property="iLabel" destination="z9w-RI-29h" id="lPM-pB-FD8"/>
                         <outlet property="iSlider" destination="lUS-UH-WnM" id="QTQ-JE-vep"/>
                         <outlet property="mapView" destination="0YM-8Q-774" id="ua2-l5-ex9"/>
+                        <outlet property="pActivity" destination="Vgu-Y9-bSn" id="Ybq-9p-jdb"/>
                         <outlet property="pImageView" destination="tSh-aV-udH" id="cmH-Mt-icr"/>
                         <outlet property="pLabel" destination="meb-bb-5b7" id="3fM-cI-22j"/>
                         <outlet property="pSlider" destination="ri9-Vj-XmR" id="Uou-8c-K1Y"/>
+                        <outlet property="rActivity" destination="DIv-AT-Pvs" id="5fG-Uk-7fd"/>
                         <outlet property="rImageView" destination="gHM-5P-Wj7" id="r9k-8w-mPH"/>
                         <outlet property="rLabel" destination="FEv-PR-Wt7" id="pcc-x5-nse"/>
                         <outlet property="rSlider" destination="Kyi-Sp-Bvg" id="fz5-WJ-wm5"/>
