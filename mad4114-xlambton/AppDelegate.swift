@@ -98,12 +98,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // add temp agent entity
         let agents = try! context.count(for: AgentEntity.fetchRequest())
         if agents == 0 {
-            StoreUtils.makeAgentEntity(context, name: "Allan", country: "kr", mission: .I)
-            StoreUtils.makeAgentEntity(context, name: "Jay", country: "ja", mission: .P)
-            StoreUtils.makeAgentEntity(context, name: "Ken", country: "ca", mission: .R)
-            StoreUtils.makeAgentEntity(context, name: "Chen", country: "zh", mission: .I)
-            StoreUtils.makeAgentEntity(context, name: "Marcos", country: "br", mission: .P)
-            StoreUtils.makeAgentEntity(context, name: "Alex", country: "us", mission: .R)
+            StoreUtils.makeAgentEntity(context, name: "Seongyeob Im", country: "kr", mission: .I)
+            StoreUtils.makeAgentEntity(context, name: "Suzuki Taro", country: "jp", mission: .P)
+            StoreUtils.makeAgentEntity(context, name: "Maple Smith", country: "ca", mission: .R)
+            StoreUtils.makeAgentEntity(context, name: "Zhangwei Chen", country: "cn", mission: .I)
+            StoreUtils.makeAgentEntity(context, name: "Marcos Bittencourt", country: "br", mission: .P)
+            StoreUtils.makeAgentEntity(context, name: "Alex Wilson", country: "us", mission: .R)
+            StoreUtils.makeAgentEntity(context, name: "Karan Patel", country: "in", mission: .I)
+            StoreUtils.makeAgentEntity(context, name: "Noah Jones", country: "au", mission: .P)
+            StoreUtils.makeAgentEntity(context, name: "Dior Martin", country: "fr", mission: .R)
             saveContext()
         }
         
@@ -119,11 +122,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let countries = try! context.count(for: CountryEntity.fetchRequest())
         if countries == 0 {
             StoreUtils.makeCountryEntity(context, code: "kr", name: "Korea", latitude: 37.5652894, longitude: 126.8494676)
-            StoreUtils.makeCountryEntity(context, code: "ja", name: "Japan", latitude: 35.6735408, longitude: 139.5703055)
+            StoreUtils.makeCountryEntity(context, code: "jp", name: "Japan", latitude: 35.6735408, longitude: 139.5703055)
             StoreUtils.makeCountryEntity(context, code: "ca", name: "Canada", latitude: 43.6570321, longitude: -79.6010258)
-            StoreUtils.makeCountryEntity(context, code: "zh", name: "China", latitude: 39.9390731, longitude: 116.1172817)
+            StoreUtils.makeCountryEntity(context, code: "cn", name: "China", latitude: 39.9390731, longitude: 116.1172817)
             StoreUtils.makeCountryEntity(context, code: "br", name: "Brazil", latitude: -22.4736177, longitude: -53.1278237)
             StoreUtils.makeCountryEntity(context, code: "us", name: "USA", latitude: 38.8935559, longitude: -77.0846815)
+            StoreUtils.makeCountryEntity(context, code: "in", name: "India", latitude: 28.5272181, longitude: 77.0689009)
+            StoreUtils.makeCountryEntity(context, code: "au", name: "Australia", latitude: -35.2813043, longitude: 149.1204446)
+            StoreUtils.makeCountryEntity(context, code: "fr", name: "France", latitude: 48.8588377, longitude: 2.2770205)
             saveContext()
         }
         

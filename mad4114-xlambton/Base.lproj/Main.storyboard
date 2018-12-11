@@ -134,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2117.5999999999999" y="124.58770614692655"/>
+            <point key="canvasLocation" x="2225" y="-243"/>
         </scene>
         <!--List of Agents-->
         <scene sceneID="eaA-2h-hin">
@@ -180,6 +180,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Map" id="BvJ-YA-FyY">
                             <connections>
                                 <action selector="btnMap:" destination="LEj-NE-B09" id="Y2P-o5-DHu"/>
+                                <segue destination="u7H-pd-6by" kind="show" id="J4s-od-GpG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -190,6 +191,215 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kjK-Bo-be8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1204" y="124.58770614692655"/>
+        </scene>
+        <!--Map Zone-->
+        <scene sceneID="owC-rm-xHH">
+            <objects>
+                <viewController id="u7H-pd-6by" customClass="MapViewController" customModule="mad4114_xlambton" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2k0-87-EaW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7RA-nG-8Vx">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0YM-8Q-774">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </mapView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="M: I" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9w-RI-29h">
+                                        <rect key="frame" x="0.0" y="368" width="120" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="M: R" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEv-PR-Wt7">
+                                        <rect key="frame" x="128" y="368" width="120" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="M: P" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meb-bb-5b7">
+                                        <rect key="frame" x="255" y="368" width="120" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCO-ql-AFl">
+                                        <rect key="frame" x="0.0" y="258" width="120" height="102"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHM-5P-Wj7">
+                                        <rect key="frame" x="128" y="258" width="120" height="102"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tSh-aV-udH">
+                                        <rect key="frame" x="255" y="258" width="120" height="102"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lUS-UH-WnM">
+                                        <rect key="frame" x="51" y="397" width="273" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="iSliderValueChanged:" destination="u7H-pd-6by" eventType="valueChanged" id="tuR-ht-9no"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kyi-Sp-Bvg">
+                                        <rect key="frame" x="51" y="434" width="273" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="rSliderValueChanged:" destination="u7H-pd-6by" eventType="valueChanged" id="0iM-Dv-FpN"/>
+                                        </connections>
+                                    </slider>
+                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ri9-Vj-XmR">
+                                        <rect key="frame" x="51" y="471" width="273" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="pSliderValueChanged:" destination="u7H-pd-6by" eventType="valueChanged" id="Jwq-c2-Etx"/>
+                                        </connections>
+                                    </slider>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="mOd-Wd-TVC"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map Zone" id="HTw-xd-ROa">
+                        <barButtonItem key="rightBarButtonItem" title="MSG" id="Xy3-1n-ggk">
+                            <connections>
+                                <action selector="btnMsg:" destination="u7H-pd-6by" id="4KB-z4-CmY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="iImageView" destination="hCO-ql-AFl" id="rc6-rJ-Kei"/>
+                        <outlet property="iLabel" destination="z9w-RI-29h" id="lPM-pB-FD8"/>
+                        <outlet property="iSlider" destination="lUS-UH-WnM" id="QTQ-JE-vep"/>
+                        <outlet property="mapView" destination="0YM-8Q-774" id="ua2-l5-ex9"/>
+                        <outlet property="pImageView" destination="tSh-aV-udH" id="cmH-Mt-icr"/>
+                        <outlet property="pLabel" destination="meb-bb-5b7" id="3fM-cI-22j"/>
+                        <outlet property="pSlider" destination="ri9-Vj-XmR" id="Uou-8c-K1Y"/>
+                        <outlet property="rImageView" destination="gHM-5P-Wj7" id="r9k-8w-mPH"/>
+                        <outlet property="rLabel" destination="FEv-PR-Wt7" id="pcc-x5-nse"/>
+                        <outlet property="rSlider" destination="Kyi-Sp-Bvg" id="fz5-WJ-wm5"/>
+                        <segue destination="wqU-0r-tem" kind="show" identifier="mission" id="5yS-1R-hBm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tqs-Gh-SuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2223.75" y="426.76056338028167"/>
+        </scene>
+        <!--Mission Update-->
+        <scene sceneID="6tQ-hK-gaQ">
+            <objects>
+                <viewController id="wqU-0r-tem" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k1V-G6-OoS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="V0R-dC-6tl">
+                                <rect key="frame" x="0.0" y="64" width="375" height="250"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="VYO-Uc-Jxx">
+                                <rect key="frame" x="15" y="353" width="344" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="OZd-yX-Ylg">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="tY0-Lm-TBu">
+                                        <rect key="frame" x="56" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="LvC-3T-nrs">
+                                        <rect key="frame" x="112" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-bT-qIY">
+                                        <rect key="frame" x="168" y="0.0" width="64" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="h1T-XG-nht">
+                                        <rect key="frame" x="256" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email-blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="ngD-uZ-7ou">
+                                        <rect key="frame" x="312" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="wYP-BL-aBe">
+                                <rect key="frame" x="15" y="408" width="344" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="fTV-pu-NTy">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="lqk-Aw-zKu">
+                                        <rect key="frame" x="56" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-green.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xof-2b-fkr">
+                                        <rect key="frame" x="112" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9Z-NI-dDn">
+                                        <rect key="frame" x="168" y="0.0" width="64" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-green.png" translatesAutoresizingMaskIntoConstraints="NO" id="I3x-hf-gjF">
+                                        <rect key="frame" x="256" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email-green.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jga-o5-HOR">
+                                        <rect key="frame" x="312" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="8lA-sx-POP">
+                                <rect key="frame" x="15" y="462" width="344" height="32"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-black.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ai2-r8-RRs">
+                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="qSQ-uC-dHg">
+                                        <rect key="frame" x="56" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-red.png" translatesAutoresizingMaskIntoConstraints="NO" id="1d8-IY-0KR">
+                                        <rect key="frame" x="112" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFo-vd-n7W">
+                                        <rect key="frame" x="168" y="0.0" width="64" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-red.png" translatesAutoresizingMaskIntoConstraints="NO" id="KA2-Y7-dPc">
+                                        <rect key="frame" x="256" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email-red.png" translatesAutoresizingMaskIntoConstraints="NO" id="2gl-c5-wqU">
+                                        <rect key="frame" x="312" y="0.0" width="32" height="32"/>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="cC6-Tl-9Dv"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mission Update" id="6YB-PO-dQ4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vu0-bf-Oai" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3117.5999999999999" y="427.73613193403304"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oGt-Mr-xnr">
@@ -210,4 +420,17 @@
             <point key="canvasLocation" x="264.80000000000001" y="124.58770614692655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera-blue.png" width="32" height="32"/>
+        <image name="camera-green.png" width="32" height="32"/>
+        <image name="camera-red.png" width="32" height="32"/>
+        <image name="email-blue.png" width="32" height="32"/>
+        <image name="email-green.png" width="32" height="32"/>
+        <image name="email-red.png" width="32" height="32"/>
+        <image name="people-black.png" width="32" height="32"/>
+        <image name="people-blue.png" width="32" height="32"/>
+        <image name="people-green.png" width="32" height="32"/>
+        <image name="people-red.png" width="32" height="32"/>
+        <image name="right-arrow.png" width="32" height="32"/>
+    </resources>
 </document>

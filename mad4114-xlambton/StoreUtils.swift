@@ -152,6 +152,31 @@ struct StoreUtils {
         return row
     }
     
+    static func countryImage(_ code: String) -> URL? {
+        switch code {
+        case "kr":
+            return URL(string: "https://images.unsplash.com/photo-1506480932912-dbbe35e3e516?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
+        case "jp":
+            return URL(string: "https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80")
+        case "ca":
+            return URL(string: "https://images.unsplash.com/photo-1505767595906-d27f4cf630a6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
+        case "cn":
+            return URL(string: "https://images.unsplash.com/photo-1500297726361-1715d90aec00?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2547&q=80")
+        case "br":
+            return URL(string: "https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80")
+        case "us":
+            return URL(string: "https://images.unsplash.com/photo-1436124026657-36828b43c7ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
+        case "in":
+            return URL(string: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2551&q=80")
+        case "au":
+            return URL(string: "https://images.unsplash.com/photo-1524293581917-878a6d017c71?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
+        case "fr":
+            return URL(string: "https://images.unsplash.com/photo-1431274172761-fca41d930114?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80")
+        default:
+            return nil
+        }
+    }
+    
 }
 
 enum Missiontype: String {
