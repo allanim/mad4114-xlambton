@@ -28,6 +28,7 @@
 		9D79A09D21BF3FCB00DE0C47 /* email-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D79A09621BF3FCA00DE0C47 /* email-red.png */; };
 		9D79A09E21BF3FCB00DE0C47 /* email-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D79A09721BF3FCB00DE0C47 /* email-green.png */; };
 		9D79A09F21BF3FCB00DE0C47 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D79A09821BF3FCB00DE0C47 /* right-arrow.png */; };
+		9D79A0A121C06E6E00DE0C47 /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D79A0A021C06E6E00DE0C47 /* MissionViewController.swift */; };
 		9DD9C22121BDE44D00D727B5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DD9C22021BDE44D00D727B5 /* star.png */; };
 		9DD9C22321BDEA8900D727B5 /* AgentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22221BDEA8900D727B5 /* AgentTableViewController.swift */; };
 		9DD9C22B21BE0E0300D727B5 /* RoundedBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22721BE0E0300D727B5 /* RoundedBorderButton.swift */; };
@@ -61,6 +62,7 @@
 		9D79A09621BF3FCA00DE0C47 /* email-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "email-red.png"; path = "../../../../../../../Users/allan/Downloads/email-red.png"; sourceTree = "<group>"; };
 		9D79A09721BF3FCB00DE0C47 /* email-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "email-green.png"; path = "../../../../../../../Users/allan/Downloads/email-green.png"; sourceTree = "<group>"; };
 		9D79A09821BF3FCB00DE0C47 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "right-arrow.png"; path = "../../../../../../../Users/allan/Downloads/right-arrow.png"; sourceTree = "<group>"; };
+		9D79A0A021C06E6E00DE0C47 /* MissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
 		9DD9C22021BDE44D00D727B5 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		9DD9C22221BDEA8900D727B5 /* AgentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentTableViewController.swift; sourceTree = "<group>"; };
 		9DD9C22721BE0E0300D727B5 /* RoundedBorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedBorderButton.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				9DD9C22221BDEA8900D727B5 /* AgentTableViewController.swift */,
 				9DD9C22F21BE10FC00D727B5 /* AgentDetailViewController.swift */,
 				9D79A07221BF2D8600DE0C47 /* MapViewController.swift */,
+				9D79A0A021C06E6E00DE0C47 /* MissionViewController.swift */,
 			);
 			path = "mad4114-xlambton";
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 				9D79A07321BF2D8600DE0C47 /* MapViewController.swift in Sources */,
 				9DD9C22E21BE0E0300D727B5 /* HoshiTextField.swift in Sources */,
 				9DD9C22D21BE0E0300D727B5 /* YoshikoTextField.swift in Sources */,
+				9D79A0A121C06E6E00DE0C47 /* MissionViewController.swift in Sources */,
 				9DD9C22C21BE0E0300D727B5 /* TextFieldEffects.swift in Sources */,
 				9D791E1821BD82C8008270D9 /* mad4114_xlambton.xcdatamodeld in Sources */,
 				9D791E2521BD8538008270D9 /* StoreUtils.swift in Sources */,

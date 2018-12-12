@@ -31,7 +31,6 @@ class MapViewController: UIViewController {
     @IBOutlet weak var rLabel: UILabel!
     @IBOutlet weak var pLabel: UILabel!
     
-    var mapManager = CLLocationManager()
     var annotation: [String:MKPointAnnotation] = [:]
     
     var context: NSManagedObjectContext {
@@ -85,12 +84,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Location Manager
-        mapManager.delegate = self                            // ViewController is the "owner" of the map.
-        mapManager.desiredAccuracy = kCLLocationAccuracyBest  // Define the best location possible to be used in app.
-        mapManager.requestWhenInUseAuthorization()            // The feature will not run in background
-        mapManager.startUpdatingLocation()                    // Continuously geo-position update
-        
         // Map View
         mapView.delegate = self
         
@@ -225,15 +218,18 @@ class MapViewController: UIViewController {
         }
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let dest = segue.destination as? MissionViewController {
+            dest.iAgent = selectedIAgent
+            dest.rAgent = selectedRAgent
+            dest.pAgent = selectedPAgent
+        }
     }
-    */
+ 
     @IBAction func btnMsg(_ sender: Any) {
         performSegue(withIdentifier: "mission", sender: self)
     }
@@ -252,7 +248,7 @@ class MapViewController: UIViewController {
     }
 }
 
-extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
+extension MapViewController: MKMapViewDelegate {
     
     func makeRegion(latitude: Double, longitude: Double) -> MKCoordinateRegion {
         // Here we define the map's zoom. The value 0.01 is a pattern
@@ -263,24 +259,6 @@ extension MapViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         
         // Based on myLocation and zoom define the region to be shown on the screen
         return MKCoordinateRegion(center: myLocation, span: zoom)
-        
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        // The array locations stores all the user's positions, and the position 0 is the most recent one
-        let location = locations[0]
-        
-        // Make Region
-        let region = makeRegion(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-        
-        // Setting the map itself based previous set-up
-        mapView.setRegion(region, animated: true)
-        
-        // Showing the blue dot in a map
-        mapView.showsUserLocation = true
-        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

@@ -316,7 +316,7 @@
         <!--Mission Update-->
         <scene sceneID="6tQ-hK-gaQ">
             <objects>
-                <viewController id="wqU-0r-tem" sceneMemberID="viewController">
+                <viewController id="wqU-0r-tem" customClass="MissionViewController" customModule="mad4114_xlambton" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k1V-G6-OoS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -335,9 +335,17 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="tY0-Lm-TBu">
                                         <rect key="frame" x="56" y="0.0" width="32" height="32"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="LvC-3T-nrs">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgX-NG-rch">
                                         <rect key="frame" x="112" y="0.0" width="32" height="32"/>
-                                    </imageView>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="L9E-gk-BlR"/>
+                                            <constraint firstAttribute="height" constant="32" id="PD3-ax-Dlw"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="people-blue.png"/>
+                                        <connections>
+                                            <action selector="iAction:" destination="wqU-0r-tem" eventType="touchUpInside" id="bLy-9X-A2d"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLd-bT-qIY">
                                         <rect key="frame" x="168" y="0.0" width="64" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -362,9 +370,17 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="lqk-Aw-zKu">
                                         <rect key="frame" x="56" y="0.0" width="32" height="32"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-green.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xof-2b-fkr">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r5D-Tt-58L">
                                         <rect key="frame" x="112" y="0.0" width="32" height="32"/>
-                                    </imageView>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="n3Y-bn-bwr"/>
+                                            <constraint firstAttribute="height" constant="32" id="z2a-13-scY"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="people-green.png"/>
+                                        <connections>
+                                            <action selector="rAction:" destination="wqU-0r-tem" eventType="touchUpInside" id="fQR-Mn-iVA"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9Z-NI-dDn">
                                         <rect key="frame" x="168" y="0.0" width="64" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -389,9 +405,17 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right-arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="qSQ-uC-dHg">
                                         <rect key="frame" x="56" y="0.0" width="32" height="32"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="people-red.png" translatesAutoresizingMaskIntoConstraints="NO" id="1d8-IY-0KR">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R5T-NS-1GD">
                                         <rect key="frame" x="112" y="0.0" width="32" height="32"/>
-                                    </imageView>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="PPm-m9-r8c"/>
+                                            <constraint firstAttribute="height" constant="32" id="btG-sm-ck7"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="people-red.png"/>
+                                        <connections>
+                                            <action selector="pAction:" destination="wqU-0r-tem" eventType="touchUpInside" id="jrS-zV-Luf"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000Km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFo-vd-n7W">
                                         <rect key="frame" x="168" y="0.0" width="64" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -411,6 +435,12 @@
                         <viewLayoutGuide key="safeArea" id="cC6-Tl-9Dv"/>
                     </view>
                     <navigationItem key="navigationItem" title="Mission Update" id="6YB-PO-dQ4"/>
+                    <connections>
+                        <outlet property="lbIDistance" destination="TLd-bT-qIY" id="O5M-xk-2xc"/>
+                        <outlet property="lbPDistance" destination="DFo-vd-n7W" id="IeA-S7-tEy"/>
+                        <outlet property="lbRDistance" destination="Y9Z-NI-dDn" id="tBM-Z2-csw"/>
+                        <outlet property="mapView" destination="V0R-dC-6tl" id="4bk-GA-mwS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vu0-bf-Oai" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
