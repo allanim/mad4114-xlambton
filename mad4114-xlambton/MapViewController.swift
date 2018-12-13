@@ -187,7 +187,7 @@ class MapViewController: UIViewController {
             case rImageView:
                 activity =  self.rActivity
             case pImageView:
-                activity =  self.rActivity
+                activity =  self.pActivity
             default:
                 activity = nil
             }
@@ -267,12 +267,11 @@ extension MapViewController: MKMapViewDelegate {
             || annotation.title == Missiontype.R.rawValue
             || annotation.title == Missiontype.P.rawValue {
             
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "myAnnotation") as? MKPinAnnotationView
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotation.title! ?? "myAnnotation") as? MKPinAnnotationView
             
             if annotationView == nil {
-                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "myAnnotation")
+                annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotation.title! ?? "myAnnotation")
                 //color
-                annotationView?.pinTintColor = UIColor.blue
                 if annotation.title == Missiontype.R.rawValue {
                     annotationView?.pinTintColor = UIColor.green
                 } else if annotation.title == Missiontype.P.rawValue {

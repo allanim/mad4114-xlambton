@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import MapKit
 import CoreLocation
+import MessageUI
 
 class MissionViewController: UIViewController {
 
@@ -108,15 +109,29 @@ class MissionViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnIPhoto(_ sender: Any) {
+        showPhotoAction()
     }
-    */
+    
+    @IBAction func btnRPhoto(_ sender: Any) {
+        showPhotoAction()
+    }
+    
+    @IBAction func btnPPhoto(_ sender: Any) {
+        showPhotoAction()
+    }
+    
+    @IBAction func btnIEmail(_ sender: Any) {
+        sendEmail(nil)
+    }
+    
+    @IBAction func btnRemail(_ sender: Any) {
+        sendEmail(nil)
+    }
+    
+    @IBAction func btnPEmail(_ sender: Any) {
+        sendEmail(nil)
+    }
 
 }
 
@@ -203,4 +218,88 @@ extension MissionViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         
         return nil
     }
+}
+
+extension MissionViewController: MFMailComposeViewControllerDelegate {
+    func sendEmail(_ imageData: Data?) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["you@yoursite.com"])
+            mail.setSubject("Hey, Check This Mission")
+            mail.setMessageBody("You're so awesome!", isHTML: true)
+            
+            // add image
+            if let fileData = imageData {
+                mail.addAttachmentData(fileData, mimeType: "image/jpeg", fileName: "mission.jpeg")
+            }
+            
+            self.present(mail, animated: true)
+        } else {
+            print("can not send email")
+            let alert = UIAlertController(title: nil, message: "Can not send email", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}
+
+extension MissionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func showPhotoAction() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (alert:UIAlertAction!) -> Void in
+            self.camera()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (alert:UIAlertAction!) -> Void in
+            self.photoLibrary()
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true)
+    }
+    
+    func camera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera){
+            let myPickerController = UIImagePickerController()
+            myPickerController.delegate = self;
+            myPickerController.sourceType = .camera
+            self.present(myPickerController, animated: true)
+        }
+    }
+    
+    func photoLibrary() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            let myPickerController = UIImagePickerController()
+            myPickerController.delegate = self;
+            myPickerController.sourceType = .photoLibrary
+            self.present(myPickerController, animated: true)
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            let imageData = image.jpegData(compressionQuality: 0.75)
+            self.dismiss(animated: true, completion: { () -> Void in
+                self.sendEmail(imageData)
+            })
+        }else{
+            print("Something went wrong")
+            self.dismiss(animated: true)
+        }
+        
+    }
+    
 }

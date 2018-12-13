@@ -111,19 +111,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // drop country entity
-//        let dropCountries: [CountryEntity] = try! context.fetch(CountryEntity.fetchRequest())
-//        if dropCountries.count > 0 {
-//            for dropCountry in dropCountries {
-//                context.delete(dropCountry)
-//            }
-//        }
+        let dropCountries: [CountryEntity] = try! context.fetch(CountryEntity.fetchRequest())
+        if dropCountries.count > 0 {
+            for dropCountry in dropCountries {
+                context.delete(dropCountry)
+            }
+        }
         
         // add country entity
         let countries = try! context.count(for: CountryEntity.fetchRequest())
         if countries == 0 {
             StoreUtils.makeCountryEntity(context, code: "kr", name: "Korea", latitude: 37.5652894, longitude: 126.8494676)
             StoreUtils.makeCountryEntity(context, code: "jp", name: "Japan", latitude: 35.6735408, longitude: 139.5703055)
-            StoreUtils.makeCountryEntity(context, code: "ca", name: "Canada", latitude: 43.6570321, longitude: -79.6010258)
+            StoreUtils.makeCountryEntity(context, code: "ca", name: "Canada", latitude: 45.2487863, longitude: -76.3606642)
             StoreUtils.makeCountryEntity(context, code: "cn", name: "China", latitude: 39.9390731, longitude: 116.1172817)
             StoreUtils.makeCountryEntity(context, code: "br", name: "Brazil", latitude: -22.4736177, longitude: -53.1278237)
             StoreUtils.makeCountryEntity(context, code: "us", name: "USA", latitude: 38.8935559, longitude: -77.0846815)
