@@ -89,13 +89,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if StoreUtils.isSQLite {
             // drop agent entity
-            SQLiteDatahandler.dropAgent()
+//            SQLiteDatahandler.dropAgent()
             
             // add temp agent entity
             SQLiteDatahandler.initAgent()
         } else {
             // drop agent entity
-            CoreDataHandler.dropAgent(context: context)
+//            CoreDataHandler.dropAgent(context: context)
             
             // add temp agent entity
             CoreDataHandler.initAgent(context: context)
@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         // drop country entity
-        CoreDataHandler.dropCountry(context: context)
+//        CoreDataHandler.dropCountry(context: context)
         
         // add country entity
         CoreDataHandler.initCountry(context: context)
