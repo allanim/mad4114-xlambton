@@ -22,9 +22,11 @@ class MissionViewController: UIViewController {
     
     var mapManager = CLLocationManager()
     
-    var iAgent: AgentEntity?
-    var rAgent: AgentEntity?
-    var pAgent: AgentEntity?
+    var iAgent: Agent?
+    var rAgent: Agent?
+    var pAgent: Agent?
+    
+    var selectedAgent: Agent?
     
     var context: NSManagedObjectContext {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -32,7 +34,7 @@ class MissionViewController: UIViewController {
     }
     
     func fetchCountries() -> [CountryEntity] {
-        return try! context.fetch(CountryEntity.fetchRequest())
+        return CoreDataHandler.getCountries(context)
     }
     
     var countries: [CountryEntity] {
@@ -74,8 +76,8 @@ class MissionViewController: UIViewController {
         
     }
     
-    func makeMapPoint(agent: AgentEntity) {
-        if let country = self.getCountry(code: agent.country!) {
+    func makeMapPoint(agent: Agent) {
+        if let country = self.getCountry(code: agent.country) {
             // make annotation
             let pointAnnotation = MKPointAnnotation()
             pointAnnotation.coordinate = CLLocationCoordinate2DMake(country.latitude, country.longitude)
@@ -84,8 +86,8 @@ class MissionViewController: UIViewController {
         }
     }
     
-    func pickRegion(agent: AgentEntity) {
-        if let country = self.getCountry(code: agent.country!) {
+    func pickRegion(agent: Agent) {
+        if let country = self.getCountry(code: agent.country) {
             let region = makeRegion(latitude: country.latitude, longitude: country.longitude)
             mapView.setRegion(region, animated: true)
         }
@@ -110,26 +112,32 @@ class MissionViewController: UIViewController {
     }
     
     @IBAction func btnIPhoto(_ sender: Any) {
+        self.selectedAgent = iAgent
         showPhotoAction()
     }
     
     @IBAction func btnRPhoto(_ sender: Any) {
+        self.selectedAgent = rAgent
         showPhotoAction()
     }
     
     @IBAction func btnPPhoto(_ sender: Any) {
+        self.selectedAgent = pAgent
         showPhotoAction()
     }
     
     @IBAction func btnIEmail(_ sender: Any) {
+        self.selectedAgent = iAgent
         sendEmail(nil)
     }
     
     @IBAction func btnRemail(_ sender: Any) {
+        self.selectedAgent = rAgent
         sendEmail(nil)
     }
     
     @IBAction func btnPEmail(_ sender: Any) {
+        self.selectedAgent = pAgent
         sendEmail(nil)
     }
 
@@ -166,21 +174,21 @@ extension MissionViewController: CLLocationManagerDelegate, MKMapViewDelegate {
         
         // distance
         if let agent = iAgent {
-            if let country = getCountry(code: agent.country!) {
+            if let country = getCountry(code: agent.country) {
                 let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                     .distance(from: CLLocation(latitude: country.latitude, longitude: country.longitude))
                 self.lbIDistance.text = String(Int((distance / 1000).rounded())) + "Km"
             }
         }
         if let agent = rAgent {
-            if let country = getCountry(code: agent.country!) {
+            if let country = getCountry(code: agent.country) {
                 let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                     .distance(from: CLLocation(latitude: country.latitude, longitude: country.longitude))
                 self.lbRDistance.text = String(Int((distance / 1000).rounded())) + "Km"
             }
         }
         if let agent = pAgent {
-            if let country = getCountry(code: agent.country!) {
+            if let country = getCountry(code: agent.country) {
                 let distance = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                     .distance(from: CLLocation(latitude: country.latitude, longitude: country.longitude))
                 self.lbPDistance.text = String(Int((distance / 1000).rounded())) + "Km"
@@ -221,13 +229,14 @@ extension MissionViewController: CLLocationManagerDelegate, MKMapViewDelegate {
 }
 
 extension MissionViewController: MFMailComposeViewControllerDelegate {
+    
     func sendEmail(_ imageData: Data?) {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["you@yoursite.com"])
+            mail.setToRecipients([StoreUtils.decrypt(selectedAgent!.email)])
             mail.setSubject("Hey, Check This Mission")
-            mail.setMessageBody("You're so awesome!", isHTML: true)
+            mail.setMessageBody("Hi! \(StoreUtils.decrypt(selectedAgent!.name)) <br/>You are so awesome!", isHTML: true)
             
             // add image
             if let fileData = imageData {

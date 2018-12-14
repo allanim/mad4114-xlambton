@@ -3,6 +3,7 @@
     <entity name="AgentEntity" representedClassName="AgentEntity" syncable="YES" codeGenerationType="class">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mission" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -13,7 +14,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AgentEntity" positionX="-373.96875" positionY="-31.328125" width="128" height="105"/>
+        <element name="AgentEntity" positionX="-373.96875" positionY="-31.328125" width="128" height="120"/>
         <element name="CountryEntity" positionX="-174.55078125" positionY="-4.4609375" width="128" height="105"/>
     </elements>
 </model>

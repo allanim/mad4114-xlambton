@@ -11,6 +11,8 @@ import CoreData
 
 struct StoreUtils {
     
+    static var isSQLite = true
+    
     static var encryptDic: [String:String] = [:]
     static var decryptDic: [String:String] = [:]
     static var separator: Character = "/"
@@ -21,6 +23,8 @@ struct StoreUtils {
         let num = 120
         var temp: [Int:Int] = [:]
         var primeNumber: [Int] = []
+        
+        // make prime number
         for i in 2...num {
             temp[i] = i
         }
@@ -59,6 +63,8 @@ struct StoreUtils {
         
         encryptDic["0"] = "S"
         encryptDic[" "] = "#"
+        encryptDic["@"] = "&"
+        encryptDic["."] = "+"
         
         // reverse
         for (key, value) in encryptDic {
@@ -101,7 +107,7 @@ struct StoreUtils {
         missions.append(Missiontype.R)
     }
     
-    static func makeAgentEntity(_ context: NSManagedObjectContext, name: String, country: String, mission: Missiontype) {
+    static func makeAgentEntity(_ context: NSManagedObjectContext, name: String, country: String, mission: Missiontype, email: String) {
         let df = DateFormatter()
         df.dateFormat = "ddMMyyyy"
         
@@ -110,6 +116,7 @@ struct StoreUtils {
         agent.country = country
         agent.mission = mission.rawValue
         agent.date = df.string(from: Date())
+        agent.email = email
         
         encryptAgent(agent)
     }
@@ -125,6 +132,15 @@ struct StoreUtils {
     static func encryptAgent(_ agent: AgentEntity) {
         agent.name = StoreUtils.encrypt(agent.name!)
         agent.date = StoreUtils.encrypt(agent.date!).replacingOccurrences(of: "/", with: "")
+        agent.email = StoreUtils.encrypt(agent.email!)
+    }
+    
+    static func encryptAgent(_ agent: Agent) -> Agent {
+        var change = agent
+        change.name = StoreUtils.encrypt(agent.name)
+        change.date = StoreUtils.encrypt(agent.date).replacingOccurrences(of: "/", with: "")
+        change.email = StoreUtils.encrypt(agent.email)
+        return change
     }
     
     static func decryptAgent(_ agent: AgentEntity) {
@@ -137,6 +153,23 @@ struct StoreUtils {
             strDate.append(str)
         }
         agent.date = StoreUtils.decrypt(strDate)
+        agent.email = StoreUtils.decrypt(agent.email!)
+    }
+    
+    static func decryptAgent(_ agent: Agent) -> Agent {
+        var change = agent
+        change.name = StoreUtils.decrypt(agent.name)
+        var strDate = ""
+        for str in agent.date {
+            if strDate != "" {
+                strDate.append(separator)
+            }
+            strDate.append(str)
+        }
+        change.date = StoreUtils.decrypt(strDate)
+        change.email = StoreUtils.decrypt(agent.email)
+        
+        return change
     }
     
     static func rowMissions(_ check: Missiontype) -> Int {

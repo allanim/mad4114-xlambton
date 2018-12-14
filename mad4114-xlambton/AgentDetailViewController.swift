@@ -15,6 +15,7 @@ class AgentDetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtMission: UITextField!
     @IBOutlet weak var txtCountry: UITextField!
     @IBOutlet weak var txtDate: UITextField!
+    @IBOutlet weak var txtEmail: UITextField!
     
     var context: NSManagedObjectContext {
         let appDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -33,7 +34,7 @@ class AgentDetailViewController: UIViewController, UITextFieldDelegate {
     var missionPicker = UIPickerView()
     var datePicker = UIDatePicker()
     
-    var editAgent: AgentEntity!
+    var editAgent: Agent!
     var selectedCountry: CountryEntity!
     var selectedMission: Missiontype!
     var selectedDate: String!
@@ -41,19 +42,44 @@ class AgentDetailViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let agent = editAgent  {
-            StoreUtils.decryptAgent(agent)
-            self.txtName.text = agent.name
-            
-            self.selectedMission = Missiontype(rawValue: agent.mission!)
-            self.txtMission.text = agent.mission
-            
-            self.selectedCountry = getCountry(code: agent.country!)
-            self.txtCountry.text = self.selectedCountry.name
-            
-            self.selectedDate = agent.date
-            self.txtDate.text = showDate(agent.date!)
+        if StoreUtils.isSQLite {
+            if let edit = editAgent {
+                
+                let agent = StoreUtils.decryptAgent(edit)
+                
+                self.txtName.text = agent.name
+                
+                self.selectedMission = Missiontype(rawValue: agent.mission)
+                self.txtMission.text = agent.mission
+                
+                self.selectedCountry = getCountry(code: agent.country)
+                self.txtCountry.text = self.selectedCountry.name
+                
+                self.selectedDate = agent.date
+                self.txtDate.text = showDate(agent.date)
+                
+                self.txtEmail.text = agent.email
+            }
+        } else {
+            if let edit = editAgent, let agent = edit.getEntity() {
+                
+                StoreUtils.decryptAgent(agent)
+                
+                self.txtName.text = agent.name
+                
+                self.selectedMission = Missiontype(rawValue: agent.mission!)
+                self.txtMission.text = agent.mission
+                
+                self.selectedCountry = getCountry(code: agent.country!)
+                self.txtCountry.text = self.selectedCountry.name
+                
+                self.selectedDate = agent.date
+                self.txtDate.text = showDate(agent.date!)
+                
+                self.txtEmail.text = agent.email
+            }
         }
+        
         
         txtMission.delegate = self
         txtCountry.delegate = self
@@ -100,29 +126,61 @@ class AgentDetailViewController: UIViewController, UITextFieldDelegate {
     */
 
     @IBAction func btnSave(_ sender: Any) {
-        do {
-            if let agent = editAgent {
-                agent.name = self.txtName.text
-                agent.country = self.selectedCountry.code
-                agent.mission = self.selectedMission.rawValue
-                agent.date = self.selectedDate
-                
-                StoreUtils.encryptAgent(agent)
-            } else {
-                let agent = AgentEntity(context: context)
-                agent.name = self.txtName.text
-                agent.country = self.selectedCountry.code
-                agent.mission = self.selectedMission.rawValue
-                agent.date = self.selectedDate
-                
-                StoreUtils.encryptAgent(agent)
-            }
-            try context.save()
-            print("SAVED")
-        } catch {
-            context.rollback()
-            print("ROLLBACK")
+        if self.txtName.text == ""
+            || self.txtCountry.text == ""
+            || self.txtMission.text == ""
+            || self.txtDate.text == ""
+            || self.txtEmail.text == "" {
+            
+            let alert = UIAlertController(title: nil, message: "Please input Data", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            
+            return
         }
+        
+        if StoreUtils.isSQLite {
+            if editAgent != nil {
+                editAgent.name = self.txtName.text!
+                editAgent.country = self.selectedCountry.code!
+                editAgent.mission = self.selectedMission.rawValue
+                editAgent.date = self.selectedDate
+                editAgent.email = self.txtEmail.text!
+                
+                var _ = SQLiteDatahandler.saveAent(StoreUtils.encryptAgent(editAgent))
+            } else {
+                let agent = Agent(id: 0, name: self.txtName.text!, country: self.selectedCountry.code!, mission: self.selectedMission, date: self.selectedDate, email: self.txtEmail.text!)
+                
+                var _ = SQLiteDatahandler.saveAent(StoreUtils.encryptAgent(agent))
+            }
+        } else {
+            do {
+                if let edit = editAgent, let agent = edit.getEntity() {
+                    agent.name = self.txtName.text
+                    agent.country = self.selectedCountry.code
+                    agent.mission = self.selectedMission.rawValue
+                    agent.date = self.selectedDate
+                    agent.email = self.txtEmail.text
+                    
+                    StoreUtils.encryptAgent(agent)
+                } else {
+                    let agent = AgentEntity(context: context)
+                    agent.name = self.txtName.text
+                    agent.country = self.selectedCountry.code
+                    agent.mission = self.selectedMission.rawValue
+                    agent.date = self.selectedDate
+                    agent.email = self.txtEmail.text
+                    
+                    StoreUtils.encryptAgent(agent)
+                }
+                try context.save()
+                print("SAVED")
+            } catch {
+                context.rollback()
+                print("ROLLBACK")
+            }
+        }
+        
         
         self.navigationController?.popViewController(animated: true)
     }

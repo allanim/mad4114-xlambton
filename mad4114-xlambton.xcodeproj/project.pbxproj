@@ -29,6 +29,10 @@
 		9D79A09E21BF3FCB00DE0C47 /* email-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D79A09721BF3FCB00DE0C47 /* email-green.png */; };
 		9D79A09F21BF3FCB00DE0C47 /* right-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D79A09821BF3FCB00DE0C47 /* right-arrow.png */; };
 		9D79A0A121C06E6E00DE0C47 /* MissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D79A0A021C06E6E00DE0C47 /* MissionViewController.swift */; };
+		9D7A46B821C3461A00E180E8 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7A46B721C3461A00E180E8 /* Agent.swift */; };
+		9D7A46BA21C3470600E180E8 /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7A46B921C3470600E180E8 /* SQLiteManager.swift */; };
+		9D7A46BC21C36CC600E180E8 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7A46BB21C36CC600E180E8 /* CoreDataHandler.swift */; };
+		9D7A46BE21C3829300E180E8 /* SQLiteDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7A46BD21C3829300E180E8 /* SQLiteDataHandler.swift */; };
 		9DD9C22121BDE44D00D727B5 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 9DD9C22021BDE44D00D727B5 /* star.png */; };
 		9DD9C22321BDEA8900D727B5 /* AgentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22221BDEA8900D727B5 /* AgentTableViewController.swift */; };
 		9DD9C22B21BE0E0300D727B5 /* RoundedBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD9C22721BE0E0300D727B5 /* RoundedBorderButton.swift */; };
@@ -63,6 +67,10 @@
 		9D79A09721BF3FCB00DE0C47 /* email-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "email-green.png"; path = "../../../../../../../Users/allan/Downloads/email-green.png"; sourceTree = "<group>"; };
 		9D79A09821BF3FCB00DE0C47 /* right-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "right-arrow.png"; path = "../../../../../../../Users/allan/Downloads/right-arrow.png"; sourceTree = "<group>"; };
 		9D79A0A021C06E6E00DE0C47 /* MissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewController.swift; sourceTree = "<group>"; };
+		9D7A46B721C3461A00E180E8 /* Agent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
+		9D7A46B921C3470600E180E8 /* SQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
+		9D7A46BB21C36CC600E180E8 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
+		9D7A46BD21C3829300E180E8 /* SQLiteDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDataHandler.swift; sourceTree = "<group>"; };
 		9DD9C22021BDE44D00D727B5 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		9DD9C22221BDEA8900D727B5 /* AgentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentTableViewController.swift; sourceTree = "<group>"; };
 		9DD9C22721BE0E0300D727B5 /* RoundedBorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedBorderButton.swift; sourceTree = "<group>"; };
@@ -105,6 +113,7 @@
 		9D791E0E21BD82C8008270D9 /* mad4114-xlambton */ = {
 			isa = PBXGroup;
 			children = (
+				9D7A46B621C3460000E180E8 /* db */,
 				9DD9C22621BE0DE700D727B5 /* ui */,
 				9DD9C21F21BDE41C00D727B5 /* images */,
 				9D791E0F21BD82C8008270D9 /* AppDelegate.swift */,
@@ -130,6 +139,17 @@
 				9D79A06E21BF2B0800DE0C47 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9D7A46B621C3460000E180E8 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				9D7A46B721C3461A00E180E8 /* Agent.swift */,
+				9D7A46B921C3470600E180E8 /* SQLiteManager.swift */,
+				9D7A46BB21C36CC600E180E8 /* CoreDataHandler.swift */,
+				9D7A46BD21C3829300E180E8 /* SQLiteDataHandler.swift */,
+			);
+			path = db;
 			sourceTree = "<group>";
 		};
 		9DD9C21F21BDE41C00D727B5 /* images */ = {
@@ -248,15 +268,19 @@
 				9D79A07321BF2D8600DE0C47 /* MapViewController.swift in Sources */,
 				9DD9C22E21BE0E0300D727B5 /* HoshiTextField.swift in Sources */,
 				9DD9C22D21BE0E0300D727B5 /* YoshikoTextField.swift in Sources */,
+				9D7A46BC21C36CC600E180E8 /* CoreDataHandler.swift in Sources */,
 				9D79A0A121C06E6E00DE0C47 /* MissionViewController.swift in Sources */,
 				9DD9C22C21BE0E0300D727B5 /* TextFieldEffects.swift in Sources */,
+				9D7A46B821C3461A00E180E8 /* Agent.swift in Sources */,
 				9D791E1821BD82C8008270D9 /* mad4114_xlambton.xcdatamodeld in Sources */,
 				9D791E2521BD8538008270D9 /* StoreUtils.swift in Sources */,
 				9DD9C22321BDEA8900D727B5 /* AgentTableViewController.swift in Sources */,
 				9DD9C22B21BE0E0300D727B5 /* RoundedBorderButton.swift in Sources */,
 				9D791E1221BD82C8008270D9 /* ViewController.swift in Sources */,
+				9D7A46BE21C3829300E180E8 /* SQLiteDataHandler.swift in Sources */,
 				9D791E1021BD82C8008270D9 /* AppDelegate.swift in Sources */,
 				9DD9C23021BE10FC00D727B5 /* AgentDetailViewController.swift in Sources */,
+				9D7A46BA21C3470600E180E8 /* SQLiteManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

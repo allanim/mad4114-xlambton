@@ -16,15 +16,19 @@ class AgentTableViewController: UITableViewController {
         return appDelegate.persistentContainer.viewContext
     }
     
-    func fetch() -> [AgentEntity] {
-        return try! context.fetch(AgentEntity.fetchRequest())
+    func fetch() -> [Agent] {
+        if StoreUtils.isSQLite {
+            return SQLiteDatahandler.getAgents()
+        } else {
+            return CoreDataHandler.getAgents(context)
+        }
     }
     
-    var dataArray: [AgentEntity] {
-        return self.fetch().sorted(by: { $0.name! < $1.name! })
+    var dataArray: [Agent] {
+        return self.fetch()
     }
     
-    var selectedAgent: AgentEntity?
+    var selectedAgent: Agent?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +68,7 @@ class AgentTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "agentCell", for: indexPath) as? AgentTableViewCell {
             let record = self.dataArray[indexPath.row]
-            cell.lbAgent.text = "\(record.date ?? "") \(record.name ?? "")"
+            cell.lbAgent.text = "\(record.date) \(record.name)"
             return cell
         } else {
             fatalError("The dequeued cell is not an instance of RestaurantTableViewCell.")

@@ -87,51 +87,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // core data
         let context = persistentContainer.viewContext
         
-        // drop agent entity
-//        let dropAgents: [AgentEntity] = try! context.fetch(AgentEntity.fetchRequest())
-//        if dropAgents.count > 0 {
-//            for dropAgent in dropAgents {
-//                context.delete(dropAgent)
-//            }
-//        }
-        
-        // add temp agent entity
-        let agents = try! context.count(for: AgentEntity.fetchRequest())
-        if agents == 0 {
-            StoreUtils.makeAgentEntity(context, name: "Seongyeob Im", country: "kr", mission: .I)
-            StoreUtils.makeAgentEntity(context, name: "Suzuki Taro", country: "jp", mission: .P)
-            StoreUtils.makeAgentEntity(context, name: "Zhangwei Chen", country: "cn", mission: .R)
-            StoreUtils.makeAgentEntity(context, name: "Maple Smith", country: "ca", mission: .I)
-            StoreUtils.makeAgentEntity(context, name: "Marcos Bittencourt", country: "br", mission: .P)
-            StoreUtils.makeAgentEntity(context, name: "Alex Wilson", country: "us", mission: .R)
-            StoreUtils.makeAgentEntity(context, name: "Mitali Patel", country: "in", mission: .I)
-            StoreUtils.makeAgentEntity(context, name: "Noah Jones", country: "au", mission: .P)
-            StoreUtils.makeAgentEntity(context, name: "Dior Martin", country: "fr", mission: .R)
-            saveContext()
+        if StoreUtils.isSQLite {
+            // drop agent entity
+            SQLiteDatahandler.dropAgent()
+            
+            // add temp agent entity
+            SQLiteDatahandler.initAgent()
+        } else {
+            // drop agent entity
+            CoreDataHandler.dropAgent(context: context)
+            
+            // add temp agent entity
+            CoreDataHandler.initAgent(context: context)
         }
+        
         
         // drop country entity
-        let dropCountries: [CountryEntity] = try! context.fetch(CountryEntity.fetchRequest())
-        if dropCountries.count > 0 {
-            for dropCountry in dropCountries {
-                context.delete(dropCountry)
-            }
-        }
+        CoreDataHandler.dropCountry(context: context)
         
         // add country entity
-        let countries = try! context.count(for: CountryEntity.fetchRequest())
-        if countries == 0 {
-            StoreUtils.makeCountryEntity(context, code: "kr", name: "Korea", latitude: 37.5652894, longitude: 126.8494676)
-            StoreUtils.makeCountryEntity(context, code: "jp", name: "Japan", latitude: 35.6735408, longitude: 139.5703055)
-            StoreUtils.makeCountryEntity(context, code: "ca", name: "Canada", latitude: 45.2487863, longitude: -76.3606642)
-            StoreUtils.makeCountryEntity(context, code: "cn", name: "China", latitude: 39.9390731, longitude: 116.1172817)
-            StoreUtils.makeCountryEntity(context, code: "br", name: "Brazil", latitude: -22.4736177, longitude: -53.1278237)
-            StoreUtils.makeCountryEntity(context, code: "us", name: "USA", latitude: 38.8935559, longitude: -77.0846815)
-            StoreUtils.makeCountryEntity(context, code: "in", name: "India", latitude: 28.5272181, longitude: 77.0689009)
-            StoreUtils.makeCountryEntity(context, code: "au", name: "Australia", latitude: -35.2813043, longitude: 149.1204446)
-            StoreUtils.makeCountryEntity(context, code: "fr", name: "France", latitude: 48.8588377, longitude: 2.2770205)
-            saveContext()
-        }
+        CoreDataHandler.initCountry(context: context)
         
         return true
     }

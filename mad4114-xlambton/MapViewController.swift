@@ -38,30 +38,28 @@ class MapViewController: UIViewController {
         return appDelegate.persistentContainer.viewContext
     }
     
-    func fetch() -> [AgentEntity] {
-        return try! context.fetch(AgentEntity.fetchRequest())
+    func fetch() -> [Agent] {
+        if StoreUtils.isSQLite {
+            return SQLiteDatahandler.getAgents()
+        } else {
+            return CoreDataHandler.getAgents(context)
+        }
     }
     
-    var iDataArray: [AgentEntity] {
-        return self.fetch()
-            .filter({$0.mission == Missiontype.I.rawValue})
-            .sorted(by: { $0.name! < $1.name! })
+    var iDataArray: [Agent] {
+        return self.fetch().filter({$0.mission == Missiontype.I.rawValue})
     }
     
-    var rDataArray: [AgentEntity] {
-        return self.fetch()
-            .filter({$0.mission == Missiontype.R.rawValue})
-            .sorted(by: { $0.name! < $1.name! })
+    var rDataArray: [Agent] {
+        return self.fetch().filter({$0.mission == Missiontype.R.rawValue})
     }
     
-    var pDataArray: [AgentEntity] {
-        return self.fetch()
-            .filter({$0.mission == Missiontype.P.rawValue})
-            .sorted(by: { $0.name! < $1.name! })
+    var pDataArray: [Agent] {
+        return self.fetch().filter({$0.mission == Missiontype.P.rawValue})
     }
     
     func fetchCountries() -> [CountryEntity] {
-        return try! context.fetch(CountryEntity.fetchRequest())
+        return CoreDataHandler.getCountries(context)
     }
     
     var countries: [CountryEntity] {
@@ -77,9 +75,9 @@ class MapViewController: UIViewController {
         return nil
     }
     
-    var selectedIAgent: AgentEntity?
-    var selectedRAgent: AgentEntity?
-    var selectedPAgent: AgentEntity?
+    var selectedIAgent: Agent?
+    var selectedRAgent: Agent?
+    var selectedPAgent: Agent?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,29 +136,29 @@ class MapViewController: UIViewController {
     func reloadIMission() {
         if let agent = self.selectedIAgent {
             self.makeMapPoint(agent: agent)
-            self.reloadImage(iImageView, code: agent.country!)
-            self.iLabel.text = "I: \(agent.country ?? "")"
+            self.reloadImage(iImageView, code: agent.country)
+            self.iLabel.text = "I: \(agent.country)"
         }
     }
     func reloadRMission() {
         if let agent = self.selectedRAgent {
             self.makeMapPoint(agent: agent)
-            self.reloadImage(rImageView, code: agent.country!)
-            self.rLabel.text = "R: \(agent.country ?? "")"
+            self.reloadImage(rImageView, code: agent.country)
+            self.rLabel.text = "R: \(agent.country)"
         }
     }
     func reloadPMission() {
         if let agent = self.selectedPAgent {
             self.makeMapPoint(agent: agent)
-            self.reloadImage(pImageView, code: agent.country!)
-            self.pLabel.text = "P: \(agent.country ?? "")"
+            self.reloadImage(pImageView, code: agent.country)
+            self.pLabel.text = "P: \(agent.country)"
         }
     }
     
-    func makeMapPoint(agent: AgentEntity) {
-        if let country = self.getCountry(code: agent.country!) {
+    func makeMapPoint(agent: Agent) {
+        if let country = self.getCountry(code: agent.country) {
             // delete prev annotaion
-            if let annotation = self.annotation[agent.mission!] {
+            if let annotation = self.annotation[agent.mission] {
                 self.mapView.removeAnnotation(annotation)
             }
             
@@ -169,7 +167,7 @@ class MapViewController: UIViewController {
             pointAnnotation.coordinate = CLLocationCoordinate2DMake(country.latitude, country.longitude)
             pointAnnotation.title = agent.mission
             mapView.addAnnotation(pointAnnotation)
-            self.annotation[agent.mission!] = pointAnnotation
+            self.annotation[agent.mission] = pointAnnotation
             
             // make region
             let region = makeRegion(latitude: country.latitude, longitude: country.longitude)
